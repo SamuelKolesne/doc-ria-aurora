@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docária Aurora</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <img src="img/logo-docaria.png" alt="Logo Docária Aurora" class="logo">
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#produtos">Cardápio</a></li>
+                    <li><a href="#sobre">Sobre nós</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="background-image: url('img/home-hero.jpg')">
+        <div class="container hero-content">
+            <h1>Doces artesanais<br>para iluminar<br>o seu dia.</h1>
+            <p>Feitos com carinho, frescor<br>e aquele sabor de manhã feliz.</p>
+            <a class="btn" href="#produtos">Ver Cardápio</a>
+        </div>
+    </section>
+
+    <section id="produtos" class="produtos container">
+        <div class="cards">
+            <div class="card">
+                <img src="img/card-1.jpg" alt="Cupcakes Artesanais">
+                <h3>Cupcakes Artesanais</h3>
+                <p>Pequenos, fofos e feitos com ingredientes selecionados.</p>
+                <a class="btn-sm" data-id="cupcakes" href="#">Ver detalhes</a>
+            </div>
+
+            <div class="card">
+                <img src="img/card-2.jpg" alt="Bolos Especiais">
+                <h3>Bolos Especiais</h3>
+                <p>Receitas únicas para momentos importantes.</p>
+                <a class="btn-sm" data-id="bolos" href="#">Ver detalhes</a>
+            </div>
+
+            <div class="card">
+                <img src="img/card-3.jpg" alt="Doces Finos">
+                <h3>Doces Finos</h3>
+                <p>Perfeitos para presentear ou acompanhar.</p>
+                <a class="btn-sm" data-id="doces" href="#">Ver detalhes</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="sobre container">
+        <div class="sobre-texto">
+            <h2>Sobre a Docária Aurora</h2>
+            <p>A Docária Aurora nasceu com a missão de trazer mais leveza e doçura ao dia das pessoas. Trabalhamos com receitas artesanais, ingredientes selecionados e um toque especial de quem ama criar momentos felizes.</p>
+        </div>
+        <div class="sobre-img">
+            <img src="img/about.jpg" alt="Imagem sobre a docária">
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Docária Aurora. Todos os direitos reservados.</p>
+    </footer>
+
+
+    <!-- =============== MODAL GLOBAL =============== -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modal-img" src="" alt="">
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
+        </div>
+    </div>
+
+    <!-- =============== SCRIPT DO MODAL =============== -->
+    <script>
+        const modal = document.getElementById("modal");
+        const modalImg = document.getElementById("modal-img");
+        const modalTitle = document.getElementById("modal-title");
+        const modalDesc = document.getElementById("modal-desc");
+        const closeBtn = document.querySelector(".close");
+
+        const produtos = {
+            cupcakes: {
+                img: "img/card-1.jpg",
+                title: "Cupcakes Artesanais",
+                desc: "Cupcakes fofos, macios e feitos com ingredientes selecionados. Perfeitos para aniversários, festas ou um mimo especial."
+            },
+            bolos: {
+                img: "img/card-2.jpg",
+                title: "Bolos Especiais",
+                desc: "Bolos únicos, decorados e preparados com muito carinho para tornar qualquer momento inesquecível."
+            },
+            doces: {
+                img: "img/card-3.jpg",
+                title: "Doces Finos",
+                desc: "Doces artesanais, delicados e perfeitos para presentes, mesas de festa ou acompanhar um café."
+            }
+        };
+
+        document.querySelectorAll(".btn-sm").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+
+                const id = btn.getAttribute("data-id");
+                const p = produtos[id];
+
+                modalImg.src = p.img;
+                modalTitle.textContent = p.title;
+                modalDesc.textContent = p.desc;
+
+                modal.classList.add("show");
+            });
+        });
+
+        closeBtn.onclick = () => modal.classList.remove("show");
+
+        window.onclick = (e) => {
+            if (e.target === modal) modal.classList.remove("show");
+        };
+    </script>
+
+</body>
+</html>
